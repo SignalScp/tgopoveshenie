@@ -76,12 +76,13 @@ async def cmd_start(message: Message):
     await message.answer(
         "Привет! 👋\n\n"
         "Я бот для отсчета дней до важных событий.\n"
-        "Работаю на <b>Render.com</b> бесплатно! ⚡\n\n"
+        "zov\n\n"
         "Доступные команды:\n"
         "/setdate - Установить дату события\n"
         "/status - Показать текущий отсчет\n"
         "/remove - Удалить текущее событие\n"
-        "/help - Показать помощь",
+        "/help - Показать помощь"
+        "by AppleElol",
         parse_mode='HTML'
     )
 
@@ -97,8 +98,7 @@ async def cmd_help(message: Message):
         "📌 <b>Команды:</b>\n"
         "/setdate - Установить новую дату\n"
         "/status - Показать текущий отсчет\n"
-        "/remove - Удалить текущее событие\n"
-        "\n<i>💡 Работает на Render.com webhook!</i>",
+        "/remove - Удалить текущее событие\n",
         parse_mode='HTML'
     )
 
@@ -107,7 +107,7 @@ async def cmd_setdate(message: Message, state: FSMContext):
     """Начинает процесс установки даты"""
     await message.answer(
         "📅 Введите дату события в формате <b>ДД.ММ.ГГГГ</b>\n"
-        "Например: 31.12.2024",
+        "Например: 14.88.1941",
         parse_mode='HTML'
     )
     await state.set_state(CountdownStates.waiting_for_date)
@@ -155,8 +155,7 @@ async def cmd_status(message: Message):
         await message.answer(
             f"📅 <b>{description}</b>\n"
             f"🗓 Дата: {target.strftime('%d.%m.%Y')}\n"
-            f"⏳ Осталось: <b>{days_left} дн.</b>\n\n"
-            f"🤖 <i>Работает на Render!</i>",
+            f"⏳ Осталось: <b>{days_left} дн.</b>\n\n",
             parse_mode='HTML'
         )
     elif days_left == 0:
@@ -223,8 +222,7 @@ async def process_description(message: Message, state: FSMContext):
         f"✅ <b>Событие успешно установлено!</b>\n\n"
         f"📅 <b>{description}</b>\n"
         f"🗓 Дата: {target_date.strftime('%d.%m.%Y')}\n"
-        f"⏳ Осталось: <b>{days_left} дн.</b>\n\n"
-        f"🤖 <i>Сохранено на Render.com!</i>",
+        f"⏳ Осталось: <b>{days_left} дн.</b>\n\n",
         parse_mode='HTML'
     )
 
@@ -270,8 +268,7 @@ async def create_app():
         return web.Response(
             text=f"🤖 Telegram Countdown Bot is running!\n"
                  f"📊 Active events: {active_events}\n"
-                 f"🌐 Webhook URL: {WEBHOOK_URL}\n"
-                 f"⚡ Powered by Render.com",
+                 f"🌐 Webhook URL: {WEBHOOK_URL}\n",
             status=200,
             content_type='text/plain; charset=utf-8'
         )

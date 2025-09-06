@@ -218,23 +218,23 @@ async def process_description(message: Message, state: FSMContext):
     target_date = datetime.strptime(date_str, '%Y-%m-%d')
     days_left = (target_date.date() - datetime.now().date()).days
 
-    # await message.answer(
-        # f"✅ <b>Событие успешно установлено!</b>\n\n"
-        # f"📅 <b>{description}</b>\n"
-        # f"🗓 Дата: {target_date.strftime('%d.%m.%Y')}\n"
-        # f"⏳ Осталось: <b>{days_left} дн.</b>\n\n",
-        # parse_mode='HTML'
-    # )
-    # await state.clear()
-
-
-@dp.message()
-async def handle_other_messages(message: Message):
-    """Обрабатывает все остальные сообщения"""
     await message.answer(
-        "❓ Я не понял эту команду.\n"
-        "Используйте /help для просмотра доступных команд"
+        f"✅ <b>Событие успешно установлено!</b>\n\n"
+        f"📅 <b>{description}</b>\n"
+        f"🗓 Дата: {target_date.strftime('%d.%m.%Y')}\n"
+        f"⏳ Осталось: <b>{days_left} дн.</b>\n\n",
+        parse_mode='HTML'
     )
+
+    await state.clear()
+
+# @dp.message()
+# async def handle_other_messages(message: Message):
+    # """Обрабатывает все остальные сообщения"""
+    # await message.answer(
+        # "❓ Я не понял эту команду.\n"
+        # "Используйте /help для просмотра доступных команд"
+    # )
 
 # Создание веб-приложения
 async def create_app():
